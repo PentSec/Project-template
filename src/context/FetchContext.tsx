@@ -28,12 +28,7 @@ export const useFetch = (): FetchData => {
 }
 
 const fetchData = (url: string) => {
-    return fetch(url).then((res) => {
-        if (!res.ok) {
-            throw new Error('Failed to fetch')
-        }
-        return res.json()
-    })
+    return fetch(url).then((response) => response.json())
 }
 
 export const FetchProvider: FC<{ children: ReactNode }> = ({ children }) => {
