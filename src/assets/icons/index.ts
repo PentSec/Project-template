@@ -1,0 +1,5 @@
+export { MoonIcon } from './MoonIcon'
+export { SunIcon } from './SunIcon'
+export { GithubIcon } from './GithubIcon'
+export { TwitterIcon } from './TwitterIcon'
+export { DiscordIcon } from './DiscordIcon'
