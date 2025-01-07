@@ -4,10 +4,9 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
     plugins: [react()],
-    base: '/Project-template/',
     resolve: {
         alias: {
-            '@': path.resolve(path.dirname(new URL(import.meta.url).pathname), './src')
+            '@': path.resolve(__dirname, './src')
         }
     }
 })
