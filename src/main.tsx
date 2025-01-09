@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClientProvider } from '@tanstack/react-query'
 import queryClient from '@/utils/QueryClient'
 import '@/assets/css/main.css'
-import Content from '@/routes/Routes'
+import Layout from '@/layout/default'
 import { Provider } from './Provider'
 import { FetchProvider } from '@/context/FetchContext'
 
@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <QueryClientProvider client={queryClient}>
             <Provider>
                 <FetchProvider>
-                    <Content />
+                    <Layout />
                 </FetchProvider>
             </Provider>
         </QueryClientProvider>
