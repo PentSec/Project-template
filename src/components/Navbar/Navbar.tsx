@@ -43,11 +43,11 @@ export default function Nav() {
                         >
                             <Avatar
                                 src="/logo.svg"
-                                alt="Maddons logo"
+                                alt="Project-template logo"
                                 className="w-8 h-8 object-contain bg-transparent"
                             />
                             <p className="text-tiny ml-0 mr-1 font-bold uppercase text-inherit md:text-base">
-                                addon Manager
+                                Project Template
                             </p>
                             <Chip
                                 color="primary"
