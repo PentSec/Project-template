@@ -7,7 +7,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-A simple, customizable template built with **React**, **NextUI**, and **Tailwind CSS**. This template is designed to be a starting point for your projects, featuring built-in **React Query** for efficient data fetching and state management. The project uses **pnpm** for package management.
+A simple, customizable template built with **React**, **HeroUI**, and **Tailwind CSS**. This template is designed to be a starting point for your projects, featuring built-in **React Query** for efficient data fetching and state management. The project uses **pnpm** for package management.
 
 ![Project-Template](https://github.com/user-attachments/assets/3c32269d-f624-4ae5-bc5d-9b0b7f005abc)
 
@@ -17,7 +17,7 @@ A simple, customizable template built with **React**, **NextUI**, and **Tailwind
 ## Features
 
 -   **React**: A modern library for building user interfaces.
--   **NextUI**: A beautiful and fully accessible component library.
+-   **HeroUI**: A beautiful and fully accessible component library.
 -   **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 -   **React Query**: Simplified data fetching and caching.
 -   Pre-configured to use `fetch` for API calls.
@@ -92,9 +92,9 @@ You can replace this API with your own by editing the configuration in the conte
 
 ## 🛠️ Stack
 
--   "@nextui-org/react": `"^2.6.11"`,
--   "@nextui-org/use-infinite-scroll": `"^2.2.2"`,
--   "@nextui-org/use-theme": `"^2.1.1"`,
+-   "@HeroUI-org/react": `"^2.6.11"`,
+-   "@HeroUI-org/use-infinite-scroll": `"^2.2.2"`,
+-   "@HeroUI-org/use-theme": `"^2.1.1"`,
 -   "@tailwindcss/typography": `"^0.5.15"`,
 -   "@tanstack/react-query": `"^5.62.16"`,
 -   "framer-motion": `"^11.16.0"`,
