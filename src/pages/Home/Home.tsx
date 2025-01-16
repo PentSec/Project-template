@@ -1,5 +1,5 @@
 import { Header } from '@/components'
-import { Image } from '@nextui-org/react'
+import { Image } from "@heroui/react"
 import { useFetch } from '@/context/FetchContext'
 
 export default function Home() {

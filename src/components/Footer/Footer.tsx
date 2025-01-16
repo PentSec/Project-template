@@ -1,6 +1,6 @@
 import { DiscordIcon, GithubIcon, TwitterIcon } from '@/assets/Icons'
 import { siteConfig } from '@/config/dirConfit'
-import { Chip, Link } from '@nextui-org/react'
+import { Chip, Link } from "@heroui/react"
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()

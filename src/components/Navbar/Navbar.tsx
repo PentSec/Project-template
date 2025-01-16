@@ -11,7 +11,7 @@ import {
     Chip,
     Divider,
     Avatar
-} from '@nextui-org/react'
+} from "@heroui/react"
 
 import { DiscordIcon, GithubIcon, TwitterIcon } from '@/assets/Icons'
 import { useLocation } from 'react-router-dom'
