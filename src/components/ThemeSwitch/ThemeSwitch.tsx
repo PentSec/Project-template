@@ -1,48 +1,35 @@
-import { VisuallyHidden, useSwitch } from "@heroui/react"
 import { MoonIcon, SunIcon } from '@/assets/Icons'
-import { useTheme } from "@heroui/use-theme"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-import { SwitchProps } from "@heroui/react"
-
-const ThemeSwitch = (props: SwitchProps) => {
-    const { theme, setTheme } = useTheme()
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme')
-        if (savedTheme) {
-            setTheme(savedTheme)
+const ThemeSwitch = () => {
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('theme')
+            if (saved) return saved === 'dark'
+            return window.matchMedia('(prefers-color-scheme: dark)').matches
         }
-    }, [setTheme])
-    const isSelected = theme === 'dark'
-    const handleChange = () => {
-        const newTheme = isSelected ? 'light' : 'dark'
-        setTheme(newTheme)
-        localStorage.setItem('theme', newTheme)
-    }
-    const { Component, slots, getBaseProps, getInputProps, getWrapperProps } = useSwitch({
-        ...props,
-        isSelected,
-        onChange: handleChange
+        return false
     })
 
+    useEffect(() => {
+        const root = document.documentElement
+        if (isDark) {
+            root.classList.add('dark')
+            localStorage.setItem('theme', 'dark')
+        } else {
+            root.classList.remove('dark')
+            localStorage.setItem('theme', 'light')
+        }
+    }, [isDark])
+
     return (
-        <Component {...getBaseProps()}>
-            <VisuallyHidden>
-                <input {...getInputProps()} />
-            </VisuallyHidden>
-            <div
-                {...getWrapperProps()}
-                className={slots.wrapper({
-                    class: [
-                        'w-8 h-8',
-                        'flex items-center justify-center',
-                        'rounded-lg bg-default-500 hover:bg-default-200'
-                    ]
-                })}
-            >
-                {isSelected ? <SunIcon /> : <MoonIcon />}
-            </div>
-        </Component>
+        <button
+            aria-label="Toggle dark mode"
+            onClick={() => setIsDark(!isDark)}
+            className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600"
+        >
+            {isDark ? <SunIcon /> : <MoonIcon />}
+        </button>
     )
 }
 

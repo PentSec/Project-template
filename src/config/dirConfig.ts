@@ -1,6 +1,6 @@
 export const siteConfig = {
     name: 'Template Project',
-    description_meta: 'index description for search engines, social networks, and other services',
+    descriptionMeta: 'index description for search engines, social networks, and other services',
     description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...',
     navItems: [
@@ -10,15 +10,15 @@ export const siteConfig = {
         },
         {
             label: 'About',
-            href: '/About'
+            href: '/about'
         },
         {
             label: 'Blog',
-            href: '/Blog'
+            href: '/blog'
         },
         {
             label: 'Docs',
-            href: '/Docs'
+            href: '/docs'
         }
     ],
     navMenuItems: [
@@ -28,15 +28,15 @@ export const siteConfig = {
         },
         {
             label: 'About',
-            href: '/About'
+            href: '/about'
         },
         {
             label: 'Blog',
-            href: '/Blog'
+            href: '/blog'
         },
         {
             label: 'Docs',
-            href: '/Docs'
+            href: '/docs'
         }
     ],
     links: {

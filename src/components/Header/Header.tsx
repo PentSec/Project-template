@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import { title, subtitle } from '@/utils/primitives'
-import { siteConfig } from '@/config/dirConfit'
+import { siteConfig } from '@/config/dirConfig'
 
 const Header = () => {
     const location = useLocation()

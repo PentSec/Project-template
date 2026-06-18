@@ -29,7 +29,7 @@ const MoonIcon: FC<IconSvgProps> = ({ size = 28, width, height, ...props }) => {
             <motion.svg
                 xmlns="http://www.w3.org/2000/svg"
                 height={size || height}
-                {...props}
+                {...(props as React.ComponentPropsWithRef<typeof motion.svg>)}
                 width={size || width}
                 viewBox="0 0 24 24"
                 fill="none"

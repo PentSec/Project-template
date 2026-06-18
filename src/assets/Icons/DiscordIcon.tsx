@@ -15,7 +15,7 @@ const DiscordIcon: FC<IconSvgProps> = ({ size = 24, width, height, ...props }) =
                 height={size || height}
                 viewBox="0 0 24 24"
                 width={size || width}
-                {...props}
+                {...(props as React.ComponentPropsWithRef<typeof motion.svg>)}
                 fill="currentColor"
                 transition={{ type: 'spring', stiffness: 50, damping: 10 }}
                 variants={{

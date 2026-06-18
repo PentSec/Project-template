@@ -4,17 +4,11 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import queryClient from '@/utils/QueryClient'
 import '@/assets/css/main.css'
 import Layout from '@/layout/default'
-import { Provider } from './Provider'
-import { FetchProvider } from '@/context/FetchContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
+    <BrowserRouter basename="/Project-template">
         <QueryClientProvider client={queryClient}>
-            <Provider>
-                <FetchProvider>
-                    <Layout />
-                </FetchProvider>
-            </Provider>
+            <Layout />
         </QueryClientProvider>
     </BrowserRouter>
 )

@@ -1,6 +1,52 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+/*
+  ---break---
+*/
+@custom-variant dark (&:is(.dark *));
+
+@config '../../../tailwind.config.mjs';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@utility layer {
+  @apply flex flex-col items-center justify-center gap-4 py-8 md:py-10;
+}
+
+@utility bg-backgrounds-main {
+  @apply relative mx-auto m-0 p-0 min-h-screen items-center justify-center bg-background text-foreground;
+}
+
+@utility bg-backgrounds-main-shadows {
+  @apply min-h-screen absolute top-0 left-0 right-0 bottom-0 z-1;
+}
 
 @layer base {
     html {
@@ -9,135 +55,128 @@
         overflow-x: hidden;
         scroll-padding-top: 64px;
     }
-
-    :root {
-        font-family: 'Poppins', sans-serif;
-        line-height: 1.5;
-        font-weight: 400;
-    }
-
-    .poppins-thin {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 100;
-        font-style: normal;
-    }
-
-    .poppins-extralight {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 200;
-        font-style: normal;
-    }
-
-    .poppins-light {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 300;
-        font-style: normal;
-    }
-
-    .poppins-regular {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        font-style: normal;
-    }
-
-    .poppins-medium {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .poppins-semibold {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-style: normal;
-    }
-
-    .poppins-bold {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-style: normal;
-    }
-
-    .poppins-extrabold {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 800;
-        font-style: normal;
-    }
-
-    .poppins-black {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 900;
-        font-style: normal;
-    }
-
-    .poppins-thin-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 100;
-        font-style: italic;
-    }
-
-    .poppins-extralight-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 200;
-        font-style: italic;
-    }
-
-    .poppins-light-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 300;
-        font-style: italic;
-    }
-
-    .poppins-regular-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        font-style: italic;
-    }
-
-    .poppins-medium-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 500;
-        font-style: italic;
-    }
-
-    .poppins-semibold-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-style: italic;
-    }
-
-    .poppins-bold-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-style: italic;
-    }
-
-    .poppins-extrabold-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 800;
-        font-style: italic;
-    }
-
-    .poppins-black-italic {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 900;
-        font-style: italic;
-    }
 }
 
-@layer components {
-    .layer {
-        @apply flex flex-col items-center justify-center gap-4 py-8 md:py-10;
-    }
+/*
+  ---break---
+*/
 
-    .bg-inputs {
-        @apply flex flex-shrink gap-4 w-auto p-4 mx-auto flex-col lg:flex-row rounded-md border-small border-primary-200/40 bg-background/60 shadow-medium backdrop-blur-md mb-2;
-    }
-    .bg-backgrounds-main {
-        @apply dark:text-foreground dark:bg-background relative flex-grow mx-auto m-0 p-0 min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed dark:bg-maddons-bg bg-maddons-light;
-    }
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: 'Geist Variable', sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
 
-    .bg-backgrounds-main-shadows {
-        @apply min-h-screen absolute top-0 left-0 right-0 bottom-0 dark:bg-custom-radial z-[1];
-    }
+/*
+  ---break---
+*/
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/*
+  ---break---
+*/
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
