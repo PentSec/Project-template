@@ -7,22 +7,23 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-A simple, customizable template built with **React**, **HeroUI**, and **Tailwind CSS**. This template is designed to be a starting point for your projects, featuring built-in **React Query** for efficient data fetching and state management. The project uses **pnpm** for package management.
+A modern, clean starting point for React projects. Built with **React 19**, **Vite 8**, **TypeScript 6**, **Tailwind CSS v4**, and **shadcn/ui** on top of **Radix UI** primitives. Data fetching with **TanStack React Query**, routing with **React Router v7**, package management with **pnpm**.
 
 ![Project-Template](https://github.com/user-attachments/assets/3c32269d-f624-4ae5-bc5d-9b0b7f005abc)
-
 
 </div>
 
 ## Features
 
--   **React**: A modern library for building user interfaces.
--   **HeroUI**: A beautiful and fully accessible component library.
--   **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
--   **React Query**: Simplified data fetching and caching.
--   Pre-configured to use `fetch` for API calls.
--   Ready-to-use folder structure for scalable project organization.
--   Linter preconfigured with **ESLint** and **Prettier**.
+-   **React 19** with **TypeScript 6** — strict mode, full type safety
+-   **Vite 8** + **SWC** — fast HMR and production builds
+-   **Tailwind CSS v4** — CSS-first configuration, no PostCSS needed
+-   **shadcn/ui** — accessible, unstyled components via **Radix UI** primitives
+-   **TanStack React Query** — server-state management with caching
+-   **React Router v7** — client-side routing with basename support for GitHub Pages
+-   **Framer Motion** — declarative animations and transitions
+-   **Geist Variable** — single font system, no font conflicts
+-   **ESLint** + **TypeScript** — preconfigured linting
 
 ## Installation
 
@@ -33,7 +34,7 @@ A simple, customizable template built with **React**, **HeroUI**, and **Tailwind
     cd Project-template
     ```
 
-2. Install dependencies using `pnpm`:
+2. Install dependencies:
 
     ```bash
     pnpm install
@@ -44,7 +45,7 @@ A simple, customizable template built with **React**, **HeroUI**, and **Tailwind
 1. Start the development server:
 
     ```bash
-    pnpm run dev
+    pnpm dev
     ```
 
     The app will be available at [http://localhost:5173](http://localhost:5173).
@@ -52,57 +53,94 @@ A simple, customizable template built with **React**, **HeroUI**, and **Tailwind
 2. Build for production:
 
     ```bash
-    pnpm run build
-    pnpm start
+    pnpm build
+    ```
+
+3. Preview the production build:
+
+    ```bash
+    pnpm preview
     ```
 
 ## File Structure
 
 ```plaintext
-├── public/            # Static files (e.g., images, icons)
+├── public/                  # Static files
 ├── src/
-│   ├── assets/        # Custom icons, images, etc.
-│   ├── components/    # Reusable UI components
-│   ├── context/       # React Context for global state
-|   ├── config/        # Site configuration
-│   ├── hooks/         # Custom hooks (e.g., for API calls)
-│   ├── layout/        # Layout components (e.g., Header, Footer)
-│   ├── pages/         # React pages structure
-│   ├── routes/        # Routes with react-router-dom
-|   ├── types/         # TypeScript types
-│   ├── utils/         # Utility functions
-├── package.json       # Project configuration and dependencies
+│   ├── assets/              # Icons, CSS, images
+│   │   ├── Icons/           # SVG icon components (animated variants)
+│   │   └── css/             # Global styles (Tailwind entry point)
+│   ├── components/          # UI and feature components
+│   │   ├── Navbar/          # Top navigation bar
+│   │   ├── Footer/          # Page footer
+│   │   ├── Header/          # Page headers
+│   │   ├── ThemeSwitch/     # Dark/light mode toggle
+│   │   ├── RoutesNotFound/  # 404 page
+│   │   └── ui/              # shadcn/ui primitives (avatar, badge, button, card, etc.)
+│   ├── config/              # Site configuration (nav items, links, SEO metadata)
+│   ├── hooks/               # Custom React hooks (useCatImage, useSEO)
+│   ├── layout/              # Root layout (Nav + Content + Footer)
+│   ├── lib/                 # Utility helpers (cn, tailwind-merge)
+│   ├── pages/               # Route pages (Home, About, Blog, Docs)
+│   ├── routes/              # React Router configuration
+│   ├── types/               # Shared TypeScript types
+│   └── utils/               # QueryClient, primitives, other utilities
+├── package.json
+└── pnpm-lock.yaml
 ```
 
 ## API Integration
 
-The template uses **React Query** for API calls and caching. The default API example fetches random cat images from [The Cat API](https://thecatapi.com/):
+The template uses **TanStack React Query** for server-state management. A simple example fetches random cat images from [The Cat API](https://thecatapi.com/):
 
 ```typescript
-return fetch(url).then((response) => response.json())
+// hooks/useCatImage.ts
+export function useCatImage() {
+  return useQuery({
+    queryKey: ['cat'],
+    queryFn: () => fetch(url).then((res) => res.json()),
+  })
+}
 ```
 
-You can replace this API with your own by editing the configuration in the context or hook files.
+The hook replaces the previous Context-based approach — React Query handles caching, deduplication, and stale management globally without any extra indirection.
 
-## 👩🏽‍💻 Author
+## Deploy to GitHub Pages
+
+The project is preconfigured for GitHub Pages deployment:
+
+1. Push to your repository
+2. Go to **Settings → Pages**
+3. Source: **GitHub Actions**
+4. Use the default Vite/static site workflow, or set up a custom workflow
+
+The `basename` in `main.tsx` and `base` in `vite.config.ts` are already set to `/Project-template/` — update these if you rename the repo.
+
+## Stack
+
+| Dependency | Version |
+|---|---|
+| react | ^19.2.7 |
+| react-dom | ^19.2.7 |
+| react-router-dom | ^7.18.0 |
+| vite | ^8.x |
+| @vitejs/plugin-react-swc | ^4.x |
+| typescript | ^6.x |
+| tailwindcss | ^4.x |
+| @tailwindcss/vite | ^4.x |
+| @tanstack/react-query | ^5.x |
+| framer-motion | ^12.x |
+| radix-ui | ^1.6.0 |
+| shadcn | ^2.x (dev) |
+| class-variance-authority | latest |
+| lucide-react | latest |
+| Geist (fontsource) | latest |
+
+## Author
 
 <a href="https://github.com/pentsec">
    <img width="50px" src="https://avatars.githubusercontent.com/u/11955573?v=4" />
 </a>
-
-## 🛠️ Stack
-
--   "@HeroUI-org/react": `"^2.6.11"`,
--   "@HeroUI-org/use-infinite-scroll": `"^2.2.2"`,
--   "@HeroUI-org/use-theme": `"^2.1.1"`,
--   "@tailwindcss/typography": `"^0.5.15"`,
--   "@tanstack/react-query": `"^5.62.16"`,
--   "framer-motion": `"^11.16.0"`,
--   "react": `"^19.0.0"`,
--   "react-dom": `"^19.0.0"`,
--   "react-router-dom": `"^7.1.1"`,
--   "tailwind-variants": `"^0.3.0"`,
--   "use-dark-mode": `"^2.3.1"`
 
 ## Contributing
 
